@@ -1,6 +1,8 @@
 # Klipper-OnlyFansSFW
 Repository to create a fan/temperature management system for 3d printers. 
 
+* Not currently working with toolchanger. Testing all of this on my V0, which has bed fans only. I want to get that working before adding exhaust fans and chamber heating to the mix.
+
 Goals for the project:
 - Create a global fan_rate variable, so you can adjust fans during a print, similar to flow adjustment. (This was easy and is working, but want to add a slider for it).
 - Evaluate chamber temp on Print_start. If chamber temp is set above 40C, heatsoak, then start print, but soak should be overridable. (Think I have this working too, but want to improve it. Before print starts, hotend and part fan should be managed to set chamber temp, but not during the print.)
