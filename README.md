@@ -46,6 +46,6 @@ gcode:
 
 ```
 
-If you do not want to install virtual pins, copy use the code in OnlyFansSFW, starting on line 38. Then you just adjust a variable via Macro. 
+If you do not want to install virtual pins, copy use the code in OnlyFansSFW, starting on line 18 - line 37. Then you just adjust a variable via Macro. 
 
-If you would like a variable to add to your 12864 style display, copy the commands from line (50?) 
+If you would like a variable to add to your 12864 style display, copy the commands from line 39 - line 49. 
