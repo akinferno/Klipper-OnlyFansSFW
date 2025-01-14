@@ -86,3 +86,7 @@ input_step: 0.05
 gcode:
     SET_FAN_MULTIPLIER MULTIPLIER={'%.2f' % menu.input}
 ```
+
+
+CONTRIBUTORS
+- @speedkills for the wonderful Virtual Pin slider that I couldn't figure out.
