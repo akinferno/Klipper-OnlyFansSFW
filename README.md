@@ -46,6 +46,40 @@ gcode:
 
 ```
 
-If you do not want to install virtual pins, copy use the code in OnlyFansSFW, starting on line 18 - line 37. Then you just adjust a variable via Macro. 
+If you do not want to install virtual pins, or do not have access to SSH, you can use the following instead:
+'''
+[gcode_macro PART_FAN_VARS]
+variable_fan_rate: 1.0
+gcode:
 
-If you would like a variable to add to your 12864 style display, copy the commands from line 39 - line 49. 
+
+[gcode_macro SET_FAN_MULTIPLIER]
+gcode:
+    {% set MULTIPLIER = params.MULTIPLIER|default(1.0)|float %}
+    SET_GCODE_VARIABLE MACRO=PART_FAN_VARS VARIABLE=fan_rate VALUE={MULTIPLIER}
+
+
+[gcode_macro M106]
+rename_existing: M106.1
+gcode:
+    {% set S = params.S|default(0)|int %}
+    {% set P = params.P|default(0)|int %}
+    {% set MULTIPLIER = printer["gcode_macro PART_FAN_VARS"].fan_rate %}
+    {% set ADJUSTED_S = (S * MULTIPLIER)|round(0)|int %}
+    M106.1 P{P} S{ADJUSTED_S}
+'''
+
+If you would like a variable to add to your 12864 style display, include these commands also:
+'''
+[display_status]
+
+[menu __main __control __fan_multiplier]
+type: input
+name: Fan Rate: {'%.2f' % printer['gcode_macro PART_FAN_VARS'].fan_rate}
+input: {printer['gcode_macro PART_FAN_VARS'].fan_rate}
+input_min: 0
+input_max: 2
+input_step: 0.05
+gcode:
+    SET_FAN_MULTIPLIER MULTIPLIER={'%.2f' % menu.input}
+'''
