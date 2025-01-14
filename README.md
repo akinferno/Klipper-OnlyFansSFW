@@ -12,6 +12,7 @@ Goals for the project:
 -----------------------
 
 ***Dynamic Fan speed Adjustment***
+
 Worked with @speedkills from the Voron and FLSUN servers. Came up with a way to dynamically adjust fan speed with a multiplier, in Fluidd or Mainsail. The commands override the M106 variable so when Gcode sends a fan speed, it is first multiplied by the multiplier before executing the change. This would make the fans dynamically adjustable, inbthe same way the "Speed" slider adjusts the individual Gcode moves from the calculated values in gcode via slider. 
 
 You will need ssh access to add the virtual pin which provides a slider in Fluidd and Mainsail. But the macro can be used on it's own without the slider. 
