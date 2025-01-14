@@ -11,7 +11,7 @@ Goals for the project:
 
 -----------------------
 
-***Dynamic Fan speed Adjustment***
+***DYNAMIC FAN SPEED ADJUSMENT***
 
 Worked with @speedkills from the Voron and FLSUN servers. Came up with a way to dynamically adjust fan speed with a multiplier, in Fluidd or Mainsail. The commands override the M106 variable so when Gcode sends a fan speed, it is first multiplied by the multiplier before executing the change. This would make the fans dynamically adjustable, inbthe same way the "Speed" slider adjusts the individual Gcode moves from the calculated values in gcode via slider. 
 
@@ -47,7 +47,8 @@ gcode:
 ```
 
 If you do not want to install virtual pins, or do not have access to SSH, you can use the following instead:
-'''
+
+```
 [gcode_macro PART_FAN_VARS]
 variable_fan_rate: 1.0
 gcode:
@@ -67,10 +68,12 @@ gcode:
     {% set MULTIPLIER = printer["gcode_macro PART_FAN_VARS"].fan_rate %}
     {% set ADJUSTED_S = (S * MULTIPLIER)|round(0)|int %}
     M106.1 P{P} S{ADJUSTED_S}
-'''
+```
+
 
 If you would like a variable to add to your 12864 style display, include these commands also:
-'''
+
+```
 [display_status]
 
 [menu __main __control __fan_multiplier]
@@ -82,4 +85,4 @@ input_max: 2
 input_step: 0.05
 gcode:
     SET_FAN_MULTIPLIER MULTIPLIER={'%.2f' % menu.input}
-'''
+```
